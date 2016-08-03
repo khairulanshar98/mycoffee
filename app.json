@@ -1,0 +1,8 @@
+{
+  "name": "My Coffe and Tea",
+  "description": "Order and Delivery Coffe and Tea from and to any where on earth",
+  "repository": "https://github.com/khairulanshar98/mycoffee",
+  "logo": "http://www.dominicanjoe.com/img/logo.gif",
+  "keywords": ["node", "express", "static","heroku","coffe","khairulanshar"],
+  "image": "heroku/nodejs"
+}

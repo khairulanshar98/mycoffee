@@ -1,0 +1,45 @@
+{
+  "name": "mycoffee",
+  "version": "0.0.1",
+  "description": "Order and Delivery Coffe and Tea from and to any where on earth",
+  "engines": {
+    "node": "5.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node mycoffee.js"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "~1.9.2",
+    "ejs": "2.4.1",
+    "express": "4.13.3",
+    "jwt-simple": "^0.3.1",
+    "mongodb": "^2.1.6",
+    "mongoose": "~4.2.4",
+    "morgan": "~1.5.0",
+    "node-uuid": "^1.4.7",
+    "passport": "^0.3.0",
+    "passport-jwt": "^1.2.1",
+    "serve-favicon": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khairulanshar98/mycoffee.git"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express",
+    "heroku",
+    "coffe",
+    "khairulanshar",
+    "mongoose"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/khairulanshar98/mycoffee/issues"
+  },
+  "homepage": "https://github.com/khairulanshar98/mycoffee#readme",
+  "author": "khairul anshar"
+}

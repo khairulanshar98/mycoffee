@@ -1,0 +1,107 @@
+<div class="vertical-center">
+  <div class="container text-center">
+    <div ng-include="'views/partials/jumbotron.html'" style="padding-top:20px;"></div>
+
+
+      <form name="modelForm" id="modelForm" novalidate>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th ng-show="name_attribute==='Product Name'">Category<br/><input class="form-control input-lg border-green" ng-show="records.length>5" ng-model="search.cat_name" type="text"></th>
+            <th ng-show="name_attribute==='Unit Price'">Size<br/><input class="form-control input-lg border-green" ng-model="search.size_name" ng-show="records.length>5" type="text"></th>
+            <th ng-show="name_attribute==='Unit Price'">Product<br/><input class="form-control input-lg border-green" ng-model="search.item_name" ng-show="records.length>5" type="text"></th>
+            <th ng-show="name_attribute=='Unit Price'">{{name_attribute}}<br/><input class="form-control input-lg border-green" ng-model="search.unit_price" ng-show="records.length>5" type="text"></th>
+            <th ng-show="name_attribute!=='Unit Price'">{{name_attribute}}<br/><input class="form-control input-lg border-green" ng-model="search.name" ng-show="records.length>5" type="text"></th>
+            <th class="text-right">&nbsp;</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in records | filter:search:strict" ng-init="setInit(item)" class="text-left">
+            <td ng-show="name_attribute==='Product Name'">{{item.cat_name}}</td>
+            <td ng-show="name_attribute==='Unit Price'">{{item.size_name}}</td>
+            <td ng-show="name_attribute==='Unit Price'">{{item.item_name}}</td>
+            <td ng-show="name_attribute!=='Unit Price'">
+              <span ng-show="!item.isedit">{{item.name}}</span>
+              <input class="form-control input-lg" name="{{item[id_attribute]}}" ng-show="item.isedit" ng-model="item.name" type="text" required>
+              <div class="alert alert-warning" role="alert"  ng-show = "item.isedit && modelForm['{{item[id_attribute]}}'].$dirty && modelForm['{{item[id_attribute]}}'].$invalid">
+                    <span ng-show = "modelForm['{{item[id_attribute]}}'].$error.required">{{name_attribute}} is required.</span>
+              </div>
+            </td>
+            <td ng-show="name_attribute==='Unit Price'">
+              <span ng-show="!item.isedit">{{item.unit_price}}</span>
+              <input class="form-control input-lg" name="{{item[id_attribute]}}" ng-show="item.isedit" ng-model="item.unit_price" type="text" required>
+              <div class="alert alert-warning" role="alert"  ng-show = "item.isedit && modelForm['{{item[id_attribute]}}'].$dirty && modelForm['{{item[id_attribute]}}'].$invalid">
+                    <span ng-show = "modelForm['{{item[id_attribute]}}'].$error.required">{{name_attribute}} is required.</span>
+              </div>
+            </td>
+
+
+
+          <td class="text-right">
+            <div ng-show="name_attribute==='Unit Price'">
+            <button type="button" class="btn btn-lg btn-success"  ng-show="!item.isedit" ng-click="edit(item)">Edit</button>
+            <button type="button" class="btn btn-lg btn-primary"  ng-disabled="(!modelForm['{{item[id_attribute]}}'].$dirty) || modelForm['{{item[id_attribute]}}'].$invalid" ng-show="item.isedit" ng-click="save(item)">Save</button>
+            <button type="button" class="btn btn-lg btn-warning"  ng-show="item.isedit" ng-click="cancel(item)">Cancel</button>
+            </div>
+          </td>
+          </tr>
+
+          <tr class="text-left">
+            <td ng-show="name_attribute==='Product Name'">
+              <select class="form-control input-lg" name="model_category" ng-change="changeCatgory()" ng-model="catgory.model" ng-options="option.name for option in catgory.availableOptions track by option.cat_id" required>
+              </select>
+              <div class="alert alert-warning" role="alert"   ng-show = "itemmodel.thisdirty && itemmodel.cat_name.length===0">
+                    <span>Category is required.</span>
+              </div>
+            </td>
+            <td ng-show="name_attribute==='Unit Price'">
+              <select class="form-control input-lg" name="model_size" ng-change="changeSize()" ng-model="size.model" ng-options="option.name for option in size.availableOptions track by option.size_id" required>
+              </select>
+              <div class="alert alert-warning" role="alert"   ng-show = "itemmodel.thisdirty && itemmodel.size_name.length===0">
+                    <span>Size is required.</span>
+              </div>
+            </td>
+            <td ng-show="name_attribute==='Unit Price'">
+              <select class="form-control input-lg" name="model_product" ng-change="changeProduct()" ng-model="product.model" ng-options="option.name for option in product.availableOptions track by option.item_id" required>
+              </select>
+              <div class="alert alert-warning" role="alert"   ng-show = "itemmodel.thisdirty && itemmodel.item_name.length===0">
+                    <span>Product is required.</span>
+              </div>
+            </td>
+            <td>
+              <input class="form-control input-lg" name="model_name" ng-model="itemmodel.value" type="text" ng-keypress="itemmodel.thisdirty=true" required>
+              <div class="alert alert-warning" role="alert"   ng-show = "itemmodel.thisdirty && modelForm.model_name.$dirty && modelForm.model_name.$invalid">
+                    <span ng-show = "modelForm.model_name.$error.required">{{name_attribute}} is required.</span>
+              </div>
+            </td>
+            <td class="text-right">
+              <button type="button" class="btn btn-lg btn-primary" ng-disabled = "(!modelForm.model_name.$dirty) || modelForm.model_name.$invalid"  ng-click="createnew()">Save</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </form>
+
+
+
+
+            <div class="row main-btn">
+                    <div class="col-md-6">
+                      <a class="thumbnail tb-silver" href="#/main">
+                          <span class="fa fa-home fa-5x"></span>
+                          <div>Main Page</div>
+                      </a>
+                    </div>
+                    <div class="col-md-6">
+                      <a class="thumbnail tb-silver" href="#/setting">
+                          <span class="fa fa-cog fa-5x"></span>
+                          <div>Setting</div>
+                      </a>
+                    </div>
+
+            </div>
+  </div>
+</div>
