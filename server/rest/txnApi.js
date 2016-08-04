@@ -18,14 +18,19 @@ module.exports = function(app) {
   // create a new (POST http://localhost:8080/txn/save)
   route.post('/api', function(req, res) {
     var token = getToken(req.headers);
-    var Txn = new Txn(req.body);
-    Txn.save(function(err) {
-      //console.log(JSON.stringify(err))
-      if (err)
-        return res.status(500).send({success: false, msg: err.errmsg});
-      else
-        res.json({success: true, msg: 'Successful created new record.'});
-    });
+    var uu_id=uuid.v4();
+
+    for (var i in req.body) {
+      var transaction=req.body[i];
+      if (transaction.amount>0){
+        var txn = new Txn(transaction);
+        txn.txn_id=uu_id;
+        txn.save(function(err) {
+
+        });
+      }
+    }
+    res.json({success: true, msg: 'Successful created new record.'});
   });
   // create a new (GET http://localhost:8080/txn/get)
   route.get('/api', function(req, res) {

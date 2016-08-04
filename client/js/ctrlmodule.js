@@ -47,6 +47,7 @@ $app.factory ("Ctrlmodule",function () {
          $scope.catgory.model={};
          $scope.product.model={};
          $scope.size.model={};
+         $scope.hotcold.model={};
          $scope.progressbar.complete();
        });
      };
@@ -96,7 +97,6 @@ $app.factory ("Ctrlmodule",function () {
        $scope.changeSize = function(){
          $scope.itemmodel.size_id=$scope.size.model.size_id;
          $scope.itemmodel.size_name=$scope.size.model.name;
-            console.log( $scope.size.model);
        }
        var Size = $resource("/size/api");
        $scope.progressbar.start();
@@ -114,7 +114,8 @@ $app.factory ("Ctrlmodule",function () {
        $scope.changeProduct = function(){
          $scope.itemmodel.item_id=$scope.product.model.item_id;
          $scope.itemmodel.item_name=$scope.product.model.name;
-            console.log( $scope.product.model);
+         $scope.itemmodel.cat_id=$scope.product.model.cat_id;
+         $scope.itemmodel.cat_name=$scope.product.model.cat_name;
        }
        var Product = $resource("/product/api");
        $scope.progressbar.start();
@@ -122,6 +123,16 @@ $app.factory ("Ctrlmodule",function () {
          $scope.product.availableOptions=results;
          $scope.progressbar.complete();
        });
+     }
+
+     //Product List of value
+     $scope.hotcold={}
+     $scope.hotcold.model={};
+     $scope.hotcold.availableOptions=[{name:"Hot"},{name:"Cold"}];
+     if ($scope.name_attribute==='Unit Price'){
+       $scope.changeHotCold = function(){
+         $scope.itemmodel.hot_cold=$scope.hotcold.model.name;
+       }
      }
 
 

@@ -8,7 +8,6 @@ body{
   top: 0px;
   width: 100%;
   height: 100%;
-
   background-image: url("../images/bg.jpeg");
   background-size: 100% 100%;
   background-position: 80% 80%;
@@ -67,7 +66,10 @@ body{
 
 .jumbotron{
   background-image: linear-gradient(-95deg, #393 2%, #d35400 97%);
+  opacity: 0.7;
   color:white;
+  text-shadow: 1px 1px lightcoral;
+  margin-top: 20px;
 }
 .jumbotron a,.jumbotron a:hover{
   color:white;
@@ -78,6 +80,7 @@ body{
 
 .main-btn{
   text-align: center;
+  opacity: 0.7;
 }
 
 .main-btn .thumbnail,.main-btn .thumbnail:hover{
@@ -85,8 +88,9 @@ body{
     height: 180px;
     width: 100%;
     display: block;
-    background-color: #34495e;
+    background-color: rgba(52,73,94,0.7);
     color: gainsboro;
+    text-shadow: 1px 1px black;
   cursor: pointer;
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 180px; /* These two lines are counted as one :-)       */
@@ -169,7 +173,7 @@ body{
 
 .form-control{
   background-color: rgba(0, 0, 0, 0.5);
-  border-color:black;
+  border-color:rgba(255,255,255,0.3);
   color:green;
 }
 .form-control:focus{
@@ -181,4 +185,123 @@ body{
 
 .border-green{
   border-color: green;
+}
+
+.main-btn .item-product div{
+  margin-left:0px;
+}
+.main-btn .item-product.item-product-Tea{
+  background-color: rgba(0,128,0,0.6)!important;
+  border-color:rgba(0,128,0,1);
+}
+.main-btn .item-product.item-product-Coffe{
+  background-color: rgba(211,84,0,0.6)!important;
+  border-color:rgba(211,84,0,1);
+}
+.main-btn .item-product .item-size{
+  font-size: 18px;
+  position: absolute;
+  bottom: 25px;
+  left:0px;
+  width: 100%;
+  text-align: center;
+}
+
+.main-btn .thumbnail:hover .item-size{
+  font-size: 20px;
+}
+
+.main-btn .item-product .item-hot-cold{
+  font-size: 18px;
+  position: absolute;
+  top: 5px;
+  left:20px;
+  text-align: left;
+  padding: 0px 5px;
+  border-radius: 6px 0 6px 0;
+}
+
+.main-btn .thumbnail:hover .item-hot-cold{
+  font-size: 18px;
+}
+.item-hot-cold.Hot{
+  background-color: red;
+}
+.item-hot-cold.Cold{
+  background-color: blue;
+}
+
+.item-price{
+     background-color: rgba(255, 255, 255, 0.6);
+     border-radius: 6px;
+     padding: 10px;
+     margin-bottom: 20px;
+     min-height: 50vh;
+     text-align: left;
+}
+.item-filter{
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: left;
+  vertical-align: top;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 20px;
+  color:white;
+}
+.item-price h2{
+  margin: -top: 10px;
+  margin-bottom: 25px;
+}
+.item-price .item-cart{
+  font-size: 16px;
+  color: black;
+}
+.item-price .item-cart .cart-no, .item-price .item-cart .cart-size {
+  padding-right: 3px;
+}
+.item-price .item-cart .cart-no{
+
+}
+.item-price .item-cart .cart-item{
+
+}
+.item-price .item-cart .cart-hotcold-Hot{
+  color:red;
+}
+.item-price .item-cart .cart-hotcold-Cold{
+  color:blue;
+}
+.item-price .item-cart .cart-detail{
+  padding-bottom: 20px;
+  padding-left: 25px;
+}
+.item-price .item-cart .cart-price{
+  text-align: left;
+  display: inline-block;
+}
+.item-price .item-cart .cart-price input{
+  width: 60px;
+    text-align: right;
+    padding: 0px;
+    margin: 0px;
+}
+.item-price .item-cart .cart-amount{
+  float:right;
+  display: inline-block;
+}
+.item-price .total-amount{
+  font-size: 44px;
+  width: 100%;
+  text-align: right;
+}
+.item-price .cart-total{
+  padding-top: 20px;
+  padding-bottom: 100px;
+}
+.item-price .total-button{
+  position: absolute;
+  bottom: 10px;
+  left:0px;
+  width: 100%;
+  padding: 20px;
 }

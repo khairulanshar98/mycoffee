@@ -1,5 +1,4 @@
-$app.controller('rootController', ['$scope', '$resource','$location', '$timeout','ngProgressFactory',function ($scope, $resource,$location,$timeout,ngProgressFactory) {
-
+$app.controller('rootController', ['$scope', '$resource','$location', '$timeout','ngProgressFactory',function ($scope, $resource,$location,$timeout) {
 $location.path("/");
 $timeout(function(){$location.path("/main");},1000);
 var v1=7,v2=125;
@@ -21,13 +20,4 @@ $scope.onMouseMove=function(e){
 var width= window.innerWidth || document.body.clientWidth;
 var height= window.innerHeight || document.body.clientHeight;
 $scope.setSize(width,height);
-
-$scope.progressbar = ngProgressFactory.createInstance();
-$scope.progressbar.setHeight('4');
-$scope.progressbar.setColor('red');
-
-$scope.startBar=function(){
-  $scope.progressbar.start();
-};
-
 }]);

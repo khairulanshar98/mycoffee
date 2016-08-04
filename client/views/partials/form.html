@@ -11,6 +11,7 @@
             <th ng-show="name_attribute==='Product Name'">Category<br/><input class="form-control input-lg border-green" ng-show="records.length>5" ng-model="search.cat_name" type="text"></th>
             <th ng-show="name_attribute==='Unit Price'">Size<br/><input class="form-control input-lg border-green" ng-model="search.size_name" ng-show="records.length>5" type="text"></th>
             <th ng-show="name_attribute==='Unit Price'">Product<br/><input class="form-control input-lg border-green" ng-model="search.item_name" ng-show="records.length>5" type="text"></th>
+            <th ng-show="name_attribute==='Unit Price'">Hot or Cold<br/><input class="form-control input-lg border-green" ng-model="search.hot_cold" ng-show="records.length>5" type="text"></th>
             <th ng-show="name_attribute=='Unit Price'">{{name_attribute}}<br/><input class="form-control input-lg border-green" ng-model="search.unit_price" ng-show="records.length>5" type="text"></th>
             <th ng-show="name_attribute!=='Unit Price'">{{name_attribute}}<br/><input class="form-control input-lg border-green" ng-model="search.name" ng-show="records.length>5" type="text"></th>
             <th class="text-right">&nbsp;</th>
@@ -22,6 +23,7 @@
             <td ng-show="name_attribute==='Product Name'">{{item.cat_name}}</td>
             <td ng-show="name_attribute==='Unit Price'">{{item.size_name}}</td>
             <td ng-show="name_attribute==='Unit Price'">{{item.item_name}}</td>
+            <td ng-show="name_attribute==='Unit Price'">{{item.hot_cold}}</td>
             <td ng-show="name_attribute!=='Unit Price'">
               <span ng-show="!item.isedit">{{item.name}}</span>
               <input class="form-control input-lg" name="{{item[id_attribute]}}" ng-show="item.isedit" ng-model="item.name" type="text" required>
@@ -68,6 +70,13 @@
               </select>
               <div class="alert alert-warning" role="alert"   ng-show = "itemmodel.thisdirty && itemmodel.item_name.length===0">
                     <span>Product is required.</span>
+              </div>
+            </td>
+            <td ng-show="name_attribute==='Unit Price'">
+              <select class="form-control input-lg" name="model_hot_cold" ng-change="changeHotCold()" ng-model="hotcold.model" ng-options="option.name for option in hotcold.availableOptions track by option.name" required>
+              </select>
+              <div class="alert alert-warning" role="alert"   ng-show = "itemmodel.thisdirty && itemmodel.hot_cold.length===0">
+                    <span>Hot or Cold is required.</span>
               </div>
             </td>
             <td>

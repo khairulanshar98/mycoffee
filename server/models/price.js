@@ -6,6 +6,14 @@ var PriceHistory = require('./price_history');
 
 
 var PriceSchema = new Schema({
+    cat_id: {
+        type: String,
+        required: true
+    },
+    cat_name: {
+        type: String,
+        required: true
+    },
     item_id: {
         type: String,
         required: true
@@ -22,6 +30,10 @@ var PriceSchema = new Schema({
         type: String,
         required: true
     },
+    hot_cold: {
+        type: String,
+        required: true
+    },
     price_id: {
           type: String,
           unique: true,
@@ -29,7 +41,6 @@ var PriceSchema = new Schema({
     },
     unit_price: {
           type: Number,
-          unique: true,
           required: true
     }
 });

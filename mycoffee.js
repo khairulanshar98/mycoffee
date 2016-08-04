@@ -5,17 +5,14 @@ var bodyParser  = require('body-parser');
 var morgan      = require('morgan');
 var favicon     = require('serve-favicon');
 var mongoose    = require('mongoose');
-//var passport	  = require('passport');
 var config      = require('./server/config/database');
 var Category    = require('./server/models/category');
 var Size        = require('./server/models/size');
 var Product     = require('./server/models/product');
 var Price       = require('./server/models/price');
-
-
 var port 	      = process.env.PORT || 5000;
-var jwt 			  = require('jwt-simple');
-
+//var passport	  = require('passport');
+//var jwt 			  = require('jwt-simple');
 
 
 //configure app
@@ -40,8 +37,6 @@ app.use(express.static(path.join(__dirname,'bower_components/poly')));
 app.use(express.static(path.join(__dirname,'client')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-
 
 // Use the passport package in our application
 //app.use(passport.initialize());
@@ -69,11 +64,6 @@ mongoose.connect(uristring, function (err, res) {
     });
 // pass passport for configuration
 //require('./config/passport')(passport);
-
-
-
-
-
 
 // RESTApi
 require('./server/rest/configApi')(app,Category,'/category','cat_id');

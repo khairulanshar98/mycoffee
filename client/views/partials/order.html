@@ -2,10 +2,101 @@
 <div class="vertical-center">
   <div class="container text-center">
     <div ng-include="'views/partials/jumbotron.html'"></div>
-    <div class="row main-btn">
-       <div class="alert alert-info" role="alert"><b>30% completed</b></div>
+
+    <div class="item-filter">
+      <div style="padding-left:20px;padding-right:20px;">
+            <div class="col-lg-12">
+                <h3>Filter Product by:</h3>
+            </div>
+      </div>
+      <div class="row">
+            <div class="col-md-2">
+              <h4>Category:</h4>
+            </div>
+            <div class="col-md-10">
+              <div class="btn-group" role="group" >
+                  <button type="button" class="btn btn-lg btn-default" ng-repeat="cat in catgory.availableOptions" ng-click="search.cat_id=cat.cat_id">{{cat.name}}</button>
+                  <button type="button" class="btn btn-lg btn-default" ng-click="search.cat_id=''">All</button>
+              </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+              <div class="col-md-2">
+                <h4>Size:</h4>
+              </div>
+              <div class="col-md-10">
+                <div class="btn-group" role="group" >
+                    <button type="button" class="btn btn-lg btn-default" ng-repeat="siz in size.availableOptions" ng-click="search.size_id=siz.size_id">{{siz.name}}</button>
+                    <button type="button" class="btn btn-lg btn-default" ng-click="search.size_id=''">All</button>
+                </div>
+              </div>
+          </div>
+          <br/>
+          <div class="row">
+                <div class="col-md-2">
+                  <h4>Hot or Cold:</h4>
+                </div>
+                <div class="col-md-10">
+                  <div class="btn-group" role="group" >
+                      <button type="button" class="btn btn-lg btn-default" ng-repeat="hotncold in hotcold.availableOptions" ng-click="search.hot_cold=hotncold.name">{{hotncold.name}}</button>
+                      <button type="button" class="btn btn-lg btn-default" ng-click="search.hot_cold=''">All</button>
+                  </div>
+                </div>
+            </div>
+            <br/>
+          <div class="row">
+                <div class="col-md-2">
+                  <h4>Product Name:</h4>
+                </div>
+                <div class="col-md-10">
+                  <input class="form-control input-lg border-green" ng-model="search.item_name" type="text">
+                </div>
+            </div>
     </div>
-    <div class="row main-btn">
+
+
+    <div class="">
+            <div class="col-md-9">
+              <div class="main-btn">
+                <div class="col-md-4" ng-repeat="item in product.availableOptions | filter:search:strict" data-toggle="tooltip" data-placement="top" title="Click to add to Cart">
+                 <a href="javascript:" ng-click="addToCart(item)" class="thumbnail item-product item-product-{{item.cat_name}}">
+                   <div class="item-name">{{item.item_name}}</div>
+                   <div class="item-size">{{item.size_name}} <span>{{item.unit_price | currency}}</span></div>
+                   <div class="item-hot-cold {{item.hot_cold}}">{{item.hot_cold}}</div>
+                 </a>
+                </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 item-price">
+                <h2><i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart:</h2>
+
+                <div class="alert alert-info" role="alert" ng-show="resultmsg.length>0"><b>{{resultmsg}}</b></div>
+
+                <div ng-repeat="itemCart in cart" class="item-cart">
+                  <span class="cart-no">{{$index+1}}.</span>
+                  <span class="cart-item">{{itemCart.item_name}}</span>
+                  <span class="cart-size">[{{itemCart.size_name}}]</span>
+                  [<span class="cart-hotcold-{{itemCart.hot_cold}}">{{itemCart.hot_cold}}</span>]
+                  <div class="cart-detail">
+                     <div class="cart-price">{{itemCart.unit_price | currency}} x <input  type="number" ng-model="itemCart.quantity" ng-change="setAmount(itemCart)"> = </div>
+                     <div class="cart-amount">{{itemCart.amount | currency}}</div>
+                  </div>
+                </div>
+                <div class="cart-total" ng-show="total>0">
+                  <h4>Total Amount:</h4>
+                  <div class="total-amount">{{total | currency}}</div>
+                  <div class="total-button">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="submit()">Submit</button>
+                  </div>
+                </div>
+            </div>
+    </div>
+
+
+
+    <div class="main-btn">
             <div class="col-lg-12">
               <a class="thumbnail tb-silver" href="#/main">
                   <span class="fa fa-home fa-5x"></span>
