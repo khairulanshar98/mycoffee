@@ -2,9 +2,92 @@
 <div class="vertical-center">
   <div class="container text-center">
     <div ng-include="'views/partials/jumbotron.html'"></div>
-    <div class="row main-btn">
-        <div class="alert alert-info" role="alert"><b>0% completed</b></div>
+
+    <div class="item-filter">
+      <div style="padding-left:20px;padding-right:20px;">
+            <div class="col-lg-12">
+                <h3 style="padding-bottom: 15px;">Filter Product by:</h3>
+            </div>
+      </div>
+      <div class="row" style="padding-left:35px;padding-right:20px;">
+            <div class="col-md-2" >
+              <h4>Category:</h4>
+            </div>
+            <div class="col-md-10">
+              <select class="form-control input-lg" name="model_category" ng-change="changeCatgory()" ng-model="catgory.model" ng-options="option.name for option in catgory.availableOptions track by option.cat_id" required>
+              </select>
+            </div>
+        </div>
+        <br/>
+        <div class="row" style="padding-left:35px;padding-right:20px;">
+              <div class="col-md-2">
+                <h4>Size:</h4>
+              </div>
+              <div class="col-md-10">
+                <select class="form-control input-lg" name="model_size" ng-change="changeSize()" ng-model="size.model" ng-options="option.name for option in size.availableOptions track by option.size_id" required>
+                </select>
+              </div>
+          </div>
+          <br/>
+          <div class="row" style="padding-left:35px;padding-right:20px;">
+                <div class="col-md-2">
+                  <h4>Hot or Cold:</h4>
+                </div>
+                <div class="col-md-10">
+                  <select class="form-control input-lg" name="model_hot_cold" ng-change="changeHotCold()" ng-model="hotcold.model" ng-options="option.name for option in hotcold.availableOptions track by option.name" required>
+                  </select>
+                </div>
+            </div>
+            <br/>
+          <div class="row" style="padding-left:35px;padding-right:20px;">
+                <div class="col-md-2">
+                  <h4>Product Name:</h4>
+                </div>
+                <div class="col-md-10">
+                  <input class="form-control input-lg border-green" ng-model="search.item_name" type="text">
+                </div>
+            </div>
     </div>
+    <div class="row main-btn">
+            <div class="col-lg-12">
+                <form name="modelForm" id="modelForm" novalidate>
+              <table class="table" >
+                <thead>
+                  <tr>
+                    <th >Category</th>
+                    <th >Size</th>
+                    <th >Product</th>
+                    <th >Hot or Cold</th>
+                    <th >Price</th>
+                    <th >Quantity</th>
+                    <th >Amount</th>
+                  </tr>
+
+                </thead>
+                <tbody>
+                  <tr ng-repeat="item in records | filter:search:strict" class="text-left">
+                    <td >{{item.cat_name}}</td>
+                    <td >{{item.size_name}}</td>
+                    <td >{{item.item_name}}</td>
+                    <td >{{item.hot_cold}}</td>
+                    <td >{{item.unit_price}}</td>
+                    <td ng-init="records.total.quantity = records.total.quantity + item.quantity;">{{item.quantity}}</td>
+                    <td ng-init="records.total.amount = records.total.amount + item.amount;">{{item.amount}}</td>
+                  </tr>
+                  <tr>
+                    <th colspan="5">Total</th>
+                    <th >{{records.total.quantity}}</th>
+                    <th >{{records.total.amount}}</th>
+                  </tr>
+                </tbody>
+              </table>
+              </form>
+            </div>
+    </div>
+
+
+
+
     <div class="row main-btn">
             <div class="col-lg-12">
               <a class="thumbnail tb-silver" href="#/main">
