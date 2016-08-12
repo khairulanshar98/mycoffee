@@ -1,4 +1,4 @@
-$app.controller('rootController', ['$scope', '$resource','$location', '$timeout','ngProgressFactory',function ($scope, $resource,$location,$timeout) {
+app.controller('rootController', ['$scope', '$resource','$location', '$timeout','ngProgressFactory',function ($scope, $resource,$location,$timeout) {
 $location.path("/");
 $timeout(function(){$location.path("/main");},1000);
 var v1=7,v2=125;

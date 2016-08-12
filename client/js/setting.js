@@ -1,4 +1,4 @@
-$app.controller('setting', ['$scope', '$resource', function ($scope, $resource) {
-  
+app.controller('setting', ['$scope', '$resource', function ($scope, $resource) {
+
 
 }]);

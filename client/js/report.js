@@ -1,4 +1,4 @@
-$app.controller('report', ['$scope', '$resource', function ($scope, $resource) {
+app.controller('report', ['$scope', '$resource', function ($scope, $resource) {
     $scope.search={};
     //Category List of value
     $scope.catgory={}

@@ -1,4 +1,4 @@
-$app.controller('order', ['$scope', '$resource','$timeout', function ($scope, $resource,$timeout) {
+app.controller('order', ['$scope', '$resource','$timeout', function ($scope, $resource,$timeout) {
   //Category List of value
   $scope.catgory={}
   $scope.catgory.model={};

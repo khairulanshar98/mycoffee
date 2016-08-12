@@ -57,7 +57,10 @@
 
 
     <div class="">
-            <div class="col-md-9">
+            <div class="col-md-9" style="padding-left: 0px;">
+              <div class="col-md-12" style="border: 1px solid rgba(255,255,255,0.3);background-color: rgba(255, 255, 255, 0.6);border-radius:6px;margin-bottom:15px;">
+                <h4>Please Click on the Product below to add them into your Cart.</h4>
+              </div>
               <div class="main-btn">
                 <div class="col-md-4" ng-repeat="item in product.availableOptions | filter:search:strict" data-toggle="tooltip" data-placement="top" title="Click to add to Cart">
                  <a href="javascript:" ng-click="addToCart(item)" class="thumbnail item-product item-product-{{item.cat_name}}">

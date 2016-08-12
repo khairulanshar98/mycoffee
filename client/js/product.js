@@ -1,4 +1,4 @@
-$app.controller('product', ['$scope', '$resource','$timeout','Ctrlmodule','ngProgressFactory', function ($scope,$resource,$timeout,Ctrlmodule,ngProgressFactory) {
+app.controller('product', ['$scope', '$resource','$timeout','Ctrlmodule','ngProgressFactory', function ($scope,$resource,$timeout,Ctrlmodule,ngProgressFactory) {
   $scope.id_attribute="item_id";
   $scope.name_attribute="Product Name";
   $scope.api_attribute="/product/api";

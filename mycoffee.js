@@ -14,6 +14,10 @@ var port 	      = process.env.PORT || 5000;
 //var passport	  = require('passport');
 //var jwt 			  = require('jwt-simple');
 
+// gzip/deflate outgoing responses
+var compression = require('compression');
+//var bytes = require('bytes');
+app.use(compression({threshold:'200B'}));
 
 //configure app
 app.set("view engine","ejs");
@@ -43,15 +47,17 @@ app.use(bodyParser.json());
 
 //set default page
 app.get('/', function(req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=31557600');
   res.render('pages/index');
 });
 app.get('/angular', function(req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=31557600');
   res.render('pages/angular');
 });
 app.get('/polymer', function(req, res) {
+  res.setHeader('Cache-Control', 'public, max-age=31557600');
   res.render('pages/polymer');
 });
-
 // connect to database
 var uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://mycoffee:M17082016c@ds029655.mlab.com:29655/heroku_shjnxsr5';
 //uristring = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || config.database;

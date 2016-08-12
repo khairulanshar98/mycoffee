@@ -1,4 +1,5 @@
-$app.factory ("Ctrlmodule",function () {
+angular.module('Ctrlmodule', [])
+.factory ("Ctrlmodule",function () {
  return{
    init:function($scope,$resource,$timeout,angular,ngProgressFactory){
      $scope.progressbar = ngProgressFactory.createInstance();

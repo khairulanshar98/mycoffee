@@ -1,7 +1,6 @@
-var $app = angular.module('mycoffeeApp', ['ngRoute','ngResource','ngProgress']);
-    $app.config(function ($routeProvider, $controllerProvider) {
-
-        $app.controller = $controllerProvider.register;
+var app = angular.module('mycoffeeApp', ['ngRoute','ngResource','ngProgress','Ctrlmodule'])
+.config(['$routeProvider','$controllerProvider', function ($routeProvider, $controllerProvider) {
+        app.controller = $controllerProvider.register;
         $routeProvider
                 .when('/:name', {
                     templateUrl: function (urlattr) {
@@ -44,8 +43,8 @@ var $app = angular.module('mycoffeeApp', ['ngRoute','ngResource','ngProgress']);
                 })
                 .otherwise({redirectTo: '/'});
         ;
-    });
-    $app.run(function ($rootScope, $location,ngProgressFactory) {
+    }])
+    .run(['$rootScope', '$location','ngProgressFactory',function ($rootScope, $location,ngProgressFactory) {
       $rootScope.progressbar = ngProgressFactory.createInstance();
       $rootScope.progressbar.setHeight('4');
       $rootScope.progressbar.setColor('red');
@@ -56,4 +55,4 @@ var $app = angular.module('mycoffeeApp', ['ngRoute','ngResource','ngProgress']);
                 $rootScope.progressbar.complete();
             }
         });
-    });
+    }]);
